@@ -157,3 +157,30 @@ Docker 환경에서는 아래 환경 변수로도 설정 가능합니다:
 | Frontend | GitHub Pages |
 | Backend | 미정 (무료 플랜 서비스 예정) |
 | Database | 미정 |
+
+
+## 세팅
+1. yarn install 
+2. psql postgres 명령어로 접속
+3. 아래 명령어 실행
+```
+CREATE USER wikijs WITH PASSWORD 'wikijsrocks';
+CREATE DATABASE wiki OWNER wikijs;
+\q
+```
+4. cp config.sample.yml config.yml 로 복사
+5. config.yml에 아래의 코드 덮어씌기
+
+```
+db:
+  type: postgres
+  host: localhost
+  port: 5432
+  user: wikijs
+  pass: wikijs
+  db: wiki
+  ssl: false
+```
+
+6. yarn dev로 실행
+7. 개인 정보를 입력하고 site 주소를 로컬 http://localhost:3000 로 설정
